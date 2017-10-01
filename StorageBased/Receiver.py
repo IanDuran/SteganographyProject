@@ -9,25 +9,31 @@ sock.bind((udpIP, udpPort))
 
 while True:
 
+    #  Final ascii character to print
     asciiValue = 0
 
+    #  Receive data and get the actual string from it
     data = sock.recvfrom(1024)  # buffer size is 1024 bytes
     realData = data[0].decode('UTF-8')
 
-    print(realData)
+    #  if message is fin then program ends
     if realData == "fin":
         break
 
+    #  Get length of message % 16 and multiply it by 16( or "move" the bits 4 spaces to the right)
     secretMessage = len(realData) % pow(2, 4)
     asciiValue += secretMessage * pow(2, 4)
 
+    #  Receive data and get the actual string from it
     data = sock.recvfrom(1024)  # buffer size is 1024 bytes
     realData = data[0].decode('UTF-8')
 
+    #  if message is fin then program ends
     if realData == "fin":
         break
 
+    # Get length of message % 16 and add it to the total ascii value
     secretMessage = len(realData) % pow(2, 4)
     asciiValue += secretMessage
 
-    print(chr(asciiValue))
+    print(chr(asciiValue), asciiValue)
