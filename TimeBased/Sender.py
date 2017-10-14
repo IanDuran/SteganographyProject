@@ -20,7 +20,7 @@ if len(sys.argv) > 1:
 
             #  Remove the new line character
             value = ord(line[:-1])
-            print(value)
+            print(chr(value), value)
             power = 7
 
             for i in range(0, 8):
