@@ -1,4 +1,4 @@
-import socket, sys, time
+import socket, sys, time, timeit
 
 udpIP = "127.0.0.1"
 udpPort = 5005
@@ -11,6 +11,7 @@ it = 1
 
 #  If there is no file end program
 if len(sys.argv) > 1:
+    start = timeit.timeit()
     with open(sys.argv[1]) as mesFile:
         for line in mesFile:
 
@@ -20,7 +21,7 @@ if len(sys.argv) > 1:
 
             #  Remove the new line character
             value = ord(line[:-1])
-            print(chr(value), value)
+            #print(chr(value), value)
             power = 7
 
             for i in range(0, 8):
@@ -39,10 +40,12 @@ if len(sys.argv) > 1:
                     #  print(udpPort)
 
                 #  Give a little bit of time to the receiver
-                time.sleep(0.05)
+                time.sleep(0.000000000000000000000001)
                 power -= 1
                 it += 1
 
     print("Message Sent")
     sock.sendto("fin".encode('utf-8'), (udpIP, udpPort))
     sock.sendto("fin".encode('utf-8'), (udpIP, udpPort2))
+    end = timeit.timeit()
+    print("Execution time: " + str(end - start))
