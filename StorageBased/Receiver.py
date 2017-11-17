@@ -1,4 +1,4 @@
-import socket
+import socket, timeit
 
 udpIP = "127.0.0.1"
 udpPort = 5005
@@ -7,6 +7,9 @@ defaultHiddenBits = 4
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Internet, UDP
 sock.bind((udpIP, udpPort))
 
+start = 0
+first = True
+
 while True:
 
     #  Final ascii character to print
@@ -14,6 +17,9 @@ while True:
 
     #  Receive data and get the actual string from it
     data = sock.recvfrom(1024)  # buffer size is 1024 bytes
+    if first:
+        start = timeit.timeit()
+        first = False
     realData = data[0].decode('UTF-8')
 
     #  if message is fin then program ends
@@ -37,3 +43,6 @@ while True:
     asciiValue += secretMessage
 
     print(chr(asciiValue), asciiValue)
+
+end = timeit.timeit()
+print("Execution time: " + str(end - start))

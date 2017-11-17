@@ -1,4 +1,4 @@
-import socket, sys
+import socket, sys, timeit
 
 
 def hide_message(payload, secret_information):
@@ -73,6 +73,7 @@ if len(sys.argv) == 1:
 
 #  We are working with a file
 else:
+    start = timeit.timeit()
     with open(sys.argv[1]) as mesFile:
         for line in mesFile:
             with open("messages.txt") as mes:
@@ -82,6 +83,8 @@ else:
                         sock.sendto(line2[:-1].encode('utf-8'), (udpIP, udpPort))
     print("Message Sent")
     sock.sendto("fin".encode('utf-8'), (udpIP, udpPort))
+    end = timeit.timeit()
+    print("Execution time: " + str(end - start))
 
 
 
