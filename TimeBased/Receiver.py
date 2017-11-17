@@ -50,7 +50,7 @@ def listen(host, port):
 
         #  Byte completed reset all values
         if power == -1:
-            #print(chr(value), value)
+            print(chr(value), value)
             message = message + chr(value)
             power = 7
             value = 0

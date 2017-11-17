@@ -1,0 +1,53 @@
+Cada implementacion tiene su carpeta aparte. Ambas implementaciones fueron hechas con python 3. Pueden ser ejecutadas
+con el interprete. Siempre se deben ejecutar los receivers primero, esto porque el sender incia la transmision
+inmediatamente despues de ser ejecutado. Ambos senders deben recibir por parametro el archivo de texto "testMessage"
+respectivo por parametro. El archivo messages es necesario para la ejecucion del StorageBased.
+
+Si se desea cambiar el mensaje de alguna de las tecnicas:
+
+StorageBased:
+Cada dos lineas representan un caracter ascii. Por lo tanto por cada caracter se debe tener el primer valor hexadecimal
+y el segundo y colocarlos en dos lineas separadas. Por ejemplo para enviar "Hello World" entonces en el archivo va:
+
+4
+8
+6
+5
+6
+12
+6
+12
+6
+15
+2
+16
+5
+7
+6
+15
+7
+2
+6
+12
+6
+4
+
+En caso de que la letra contenga un 0 se debe colocar 16 en su lugar. Cada letra del valor hexadecimal debe ser
+remplazada por su valor decimal respectivo.
+
+
+TimeBased:
+Se coloca cada caracter ascci que se desea enviar en una linea separada. Es importante notar que en caso de quere enviar
+un espacio, debe ser colocado un espacio en la linea respectiva. Para enviar un "Hello World":
+
+H
+e
+l
+l
+o
+
+W
+o
+r
+l
+d
