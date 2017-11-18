@@ -1,4 +1,4 @@
-import socket, threading, timeit
+import socket, threading, time
 
 udpIP = "127.0.0.1"
 udpPort = 5005
@@ -27,7 +27,7 @@ def listen(host, port):
         data = sock.recvfrom(1024)  # buffer size is 1024 bytes
         if first:
             lock.acquire()
-            start = timeit.timeit()
+            start = time.time()
             first = False
             lock.release()
 
@@ -50,7 +50,7 @@ def listen(host, port):
 
         #  Byte completed reset all values
         if power == -1:
-            print(chr(value), value)
+            #print(chr(value), value)
             message = message + chr(value)
             power = 7
             value = 0
@@ -67,6 +67,6 @@ t2.start()
 t1.join()
 t2.join()
 
-end = timeit.timeit()
-print("Execution time: " + str(end - start))
+end = time.time()
+print("Execution time: " + str(end - start)+ " init "+ str(start)+ " End" + str(end))
 print(message)

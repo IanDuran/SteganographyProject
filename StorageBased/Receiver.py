@@ -1,4 +1,4 @@
-import socket, timeit
+import socket, time
 
 udpIP = "127.0.0.1"
 udpPort = 5005
@@ -18,7 +18,7 @@ while True:
     #  Receive data and get the actual string from it
     data = sock.recvfrom(1024)  # buffer size is 1024 bytes
     if first:
-        start = timeit.timeit()
+        start = time.time()
         first = False
     realData = data[0].decode('UTF-8')
 
@@ -44,5 +44,5 @@ while True:
 
     print(chr(asciiValue), asciiValue)
 
-end = timeit.timeit()
-print("Execution time: " + str(end - start))
+end = time.time()
+print("Execution time: " + str(end - start) + " Init " + str(start) + " Fin " + str(end))
